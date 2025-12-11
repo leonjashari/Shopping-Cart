@@ -3,7 +3,7 @@
 @endphp
 
 <div class="relative">
-    <div class="relative overflow-hidden bg-gradient-to-b from-indigo-50 via-white to-white">
+    <div class="relative overflow-x-hidden bg-gradient-to-b from-indigo-50 via-white to-white">
         <div class="absolute inset-0 pointer-events-none opacity-40" aria-hidden="true">
             <div class="absolute -left-20 top-10 h-64 w-64 rounded-full bg-indigo-200 blur-3xl"></div>
             <div class="absolute -right-10 top-32 h-72 w-72 rounded-full bg-emerald-200 blur-3xl"></div>
@@ -30,7 +30,7 @@
                 @endif
             </div>
 
-            <div class="grid gap-8 lg:grid-cols-3">
+            <div class="grid gap-8 items-start md:grid-cols-3">
                 <div class="lg:col-span-2 space-y-4">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-2">
@@ -89,7 +89,7 @@
                     </div>
                 </div>
 
-                <div class="space-y-4">
+                <div class="space-y-4 md:sticky md:top-6 md:self-start md:max-h-[80vh] md:overflow-y-auto">
                     <div class="flex items-center justify-between">
                         <h2 class="text-lg font-semibold text-gray-900">Cart</h2>
                         <span class="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-semibold text-gray-700">Items: {{ $cart->items->sum('quantity') }}</span>
