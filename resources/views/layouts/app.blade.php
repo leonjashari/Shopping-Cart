@@ -16,7 +16,14 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            <livewire:layout.navigation />
+            <div class="bg-white shadow-sm">
+                <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+                    <livewire:layout.navigation />
+                    @auth
+                        <livewire:navbar.cart-icon />
+                    @endauth
+                </div>
+            </div>
 
             <!-- Page Heading -->
             @if (isset($header))
