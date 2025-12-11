@@ -12,8 +12,6 @@ class SendLowStockNotification implements ShouldQueue
 {
     use Queueable;
 
-    public bool $afterCommit = true;
-
     public function __construct(public readonly Product $product)
     {}
 
