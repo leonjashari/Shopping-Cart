@@ -13,10 +13,12 @@ use Livewire\Component;
 class Index extends Component
 {
     public array $quantities = [];
+    public ?string $banner = null;
 
     public function mount(): void
     {
         $this->resetQuantities();
+        $this->banner = session('success');
     }
 
     #[On('cart-updated')]
@@ -34,9 +36,10 @@ class Index extends Component
 
         try {
             CartService::forUser(Auth::user())->addProduct($product, $quantity);
-            session()->flash('success', "{$product->name} added to cart.");
+            $this->banner = "{$product->name} added to cart.";
             $this->dispatch('cart-updated');
         } catch (ValidationException $e) {
+            $this->banner = null;
             $this->addError('cart', $e->getMessage());
         }
     }
@@ -65,9 +68,10 @@ class Index extends Component
     {
         try {
             CartService::forUser(Auth::user())->checkout();
-            session()->flash('success', 'Order placed successfully. You will receive a confirmation email shortly.');
+            $this->banner = 'Order placed successfully. You will receive a confirmation email shortly.';
             $this->dispatch('cart-updated');
         } catch (ValidationException $e) {
+            $this->banner = null;
             $this->addError('checkout', $e->validator?->errors()->first() ?? $e->getMessage());
         }
     }
